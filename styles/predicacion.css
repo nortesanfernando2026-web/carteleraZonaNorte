@@ -1,0 +1,45 @@
+.predicacion-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.dia-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+.dia-card h2 {
+    margin: 0 0 12px;
+    color: #1f2a33;
+    font-size: 1.2rem;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 6px;
+}
+
+.salida {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px;
+    border-radius: 10px;
+    background: #f6f8fa;
+    margin-bottom: 10px;
+}
+
+.salida .hora {
+    font-weight: bold;
+    color: #3a5f7d;
+}
+
+.salida i {
+    margin-right: 6px;
+    color: #3a5f7d;
+}
+
+.salida span {
+    font-size: 0.9rem;
+}
