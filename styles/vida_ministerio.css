@@ -1,0 +1,21 @@
+.semana-selector {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.semana-selector button {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background: #f1f4f7;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.semana-selector button.active {
+  background: #3a5f7d;
+  color: white;
+  border-color: #3a5f7d;
+}
