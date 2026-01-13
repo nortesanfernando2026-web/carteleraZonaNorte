@@ -49,33 +49,46 @@
         <p><strong>Presidente:</strong> ${info.PRESIDENTE}</p>
         <p><strong>Canción:</strong> ${info.CANCION} – <strong>Oración:</strong> ${info.ORACION_INICIAL}</p>
 
-        ${renderBloque('TESOROS DE LA BIBLIA', DATA.tesoros, semana)}
-        ${renderBloque('SEAMOS MEJORES MAESTROS', DATA.maestros, semana, true)}
-        ${renderBloque('NUESTRA VIDA CRISTIANA', DATA.vida, semana)}
+        ${renderBloque('TESOROS DE LA BIBLIA', DATA.tesoros, semana, false, 'tesoros')}
+        ${renderBloque('SEAMOS MEJORES MAESTROS', DATA.maestros, semana, true, 'maestros')}
+        ${renderBloque('NUESTRA VIDA CRISTIANA', DATA.vida, semana, false, 'vida')}
         ${renderFinSemana(DATA.finde, semana)}
       </div>
     `;
   }
 
-  function renderBloque(titulo, data, semana, ayudante = false) {
+  function renderBloque(titulo, data, semana, ayudante = false, tipo = '') {
     const filas = data.filter(f => f.SEMANA === semana);
     if (!filas.length) return '';
 
+    const iconos = {
+      tesoros: '💎',
+      maestros: '🌾',
+      vida: '🐑'
+    };
+
     return `
-      <h3 style="margin-top:20px">${titulo}</h3>
+    <section class="bloque ${tipo}">
+      <h3 class="bloque-titulo">
+        <span class="icono">${iconos[tipo] || ''}</span>
+        ${titulo}
+      </h3>
+
       <table class="sonido-table">
         <tbody>
           ${filas.map(f => `
             <tr>
-              <td>${f.TITULO}</td>
-              <td>${f.LECTOR || '—'}</td>
-              ${ayudante ? `<td>${f.REEMPLAZANTE || '—'}</td>` : ''}
+              <td class="titulo">${f.TITULO}</td>
+              <td class="lector">${f.LECTOR || '—'}</td>
+              ${ayudante ? `<td class="ayudante">${f.REEMPLAZANTE || '—'}</td>` : ''}
             </tr>
           `).join('')}
         </tbody>
       </table>
-    `;
+    </section>
+  `;
   }
+
 
   function renderFinSemana(data, semana) {
     const f = data.find(x => x.SEMANA === semana);

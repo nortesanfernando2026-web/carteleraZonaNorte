@@ -1,8 +1,87 @@
-.semana-selector {
+/* ===== BLOQUES ===== */
+.bloque {
+  border-radius: 10px;
+  margin-top: 25px;
+  padding: 15px;
+}
+
+/* TITULO */
+.bloque-titulo {
   display: flex;
+  align-items: center;
   gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.bloque-titulo .icono {
+  font-size: 1.4rem;
+}
+
+/* ===== COLORES OFICIALES ===== */
+
+/* TESOROS */
+.bloque.tesoros {
+  background: #e9f0fb;
+}
+
+.bloque.tesoros .bloque-titulo {
+  color: #1e4fa1;
+}
+
+/* MAESTROS */
+.bloque.maestros {
+  background: #fff4cc;
+}
+
+.bloque.maestros .bloque-titulo {
+  color: #8a6d00;
+}
+
+/* VIDA CRISTIANA */
+.bloque.vida {
+  background: #fde2dc;
+}
+
+.bloque.vida .bloque-titulo {
+  color: #9b2c1a;
+}
+
+/* ===== TABLA ===== */
+.sonido-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.sonido-table td {
+  padding: 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  font-size: 0.95rem;
+}
+
+.sonido-table tr:last-child td {
+  border-bottom: none;
+}
+
+.sonido-table .titulo {
+  width: 60%;
+}
+
+.sonido-table .lector,
+.sonido-table .ayudante {
+  text-align: right;
+  font-weight: 500;
+}
+
+/* ===== FIX filas alternadas (vida y ministerio) ===== */
+.bloque .sonido-table tr:nth-child(even),
+.bloque .sonido-table tr:nth-child(odd) {
+  background: transparent !important;
+}
+
+.bloque .sonido-table td {
+  background: transparent !important;
 }
 
 .semana-selector button {
@@ -18,4 +97,11 @@
   background: #3a5f7d;
   color: white;
   border-color: #3a5f7d;
+}
+
+.semana-selector {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
 }
