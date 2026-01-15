@@ -45,14 +45,14 @@
         <table class="sonido-table">
           <thead>
             <tr>
-              <th>🎥 Cámara / Auditorio</th>
+              <th>🎥 Auditorio</th>
               <th>🚪 Puertas</th>
             </tr>
           </thead>
           <tbody>
             ${porFecha[fecha].map(f => `
               <tr>
-                <td>${f['CAMARA-AUDITORIO'] || '—'}</td>
+                <td>${f['AUDITORIO'] || '—'}</td>
                 <td>${f.PUERTAS || '—'}</td>
               </tr>
             `).join('')}

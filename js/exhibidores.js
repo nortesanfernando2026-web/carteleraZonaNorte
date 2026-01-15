@@ -15,7 +15,7 @@
     .then(data => {
       const fila = data.find(f => f.seccion === 'exhibidores');
       if (fila && titulo) {
-        titulo.innerHTML = `<i class="fa-solid fa-cart-flatbed"></i> ${fila.titulo}`;
+        titulo.innerHTML = `<i class="fa-solid fa-store"></i> ${fila.titulo}`;
       }
     });
 

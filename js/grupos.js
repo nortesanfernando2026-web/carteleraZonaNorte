@@ -1,15 +1,12 @@
 (() => {
   const SHEET_ID = '1HwjfPfP9xR0Eocc8lE0RCGqhjmDuu_F0rp8N_87JxRo';
-
   const URL_GRUPOS  = `https://opensheet.elk.sh/${SHEET_ID}/grupos`;
   const URL_TITULOS = `https://opensheet.elk.sh/${SHEET_ID}/titulos`;
 
   const container = document.getElementById('gruposContainer');
   const titulo = document.getElementById('tituloGrupos');
-
   if (!container) return;
 
-  // 👉 Título dinámico
   fetch(URL_TITULOS)
     .then(res => res.json())
     .then(data => {
@@ -19,7 +16,6 @@
       }
     });
 
-  // 👉 Datos de grupos
   fetch(URL_GRUPOS)
     .then(res => res.json())
     .then(data => renderGrupos(data))
@@ -29,7 +25,6 @@
     container.innerHTML = '';
 
     const porGrupo = {};
-
     data.forEach(fila => {
       if (!porGrupo[fila.GRUPO]) porGrupo[fila.GRUPO] = [];
       porGrupo[fila.GRUPO].push(fila);
@@ -41,20 +36,24 @@
       const card = document.createElement('div');
       card.className = 'sonido-card';
 
+      // Ordenar para que los roles aparezcan primero
+      const rolesPrioritarios = ['SUP', 'AUX'];
+      const personasOrdenadas = personas.sort((a, b) => {
+        const aIndex = a.ROLES ? rolesPrioritarios.findIndex(r => a.ROLES.includes(r)) : 2;
+        const bIndex = b.ROLES ? rolesPrioritarios.findIndex(r => b.ROLES.includes(r)) : 2;
+        return aIndex - bIndex;
+      });
+
       card.innerHTML = `
         <h2>${grupo} <span style="font-size:.85rem;color:#666">(${personas.length})</span></h2>
         <table class="sonido-table">
-          <thead>
-            <tr>
-              <th>👤 Nombre</th>
-              <th>🏷 Roles</th>
-            </tr>
-          </thead>
           <tbody>
-            ${personas.map(p => `
+            ${personasOrdenadas.map(p => `
               <tr>
-                <td>${p.NOMBRE}</td>
-                <td>${formatRoles(p.ROLES)}</td>
+                <td>
+                  <span class="nombre-persona">${p.NOMBRE}</span>
+                  ${formatRoles(p.ROLES)}
+                </td>
               </tr>
             `).join('')}
           </tbody>
@@ -64,7 +63,6 @@
       container.appendChild(card);
     });
 
-    // 👉 Total general
     const total = data.length;
     const totalDiv = document.createElement('div');
     totalDiv.className = 'sonido-card';
@@ -78,11 +76,13 @@
   }
 
   function formatRoles(roles) {
-    if (!roles) return '—';
-
+    if (!roles) return '';
+    const mostrar = ['SUP', 'AUX'];
     return roles
       .split(',')
-      .map(r => `<span class="rol-badge">${r.trim()}</span>`)
+      .map(r => r.trim())
+      .filter(r => mostrar.includes(r))
+      .map(r => `<span class="rol-badge">${r}</span>`)
       .join(' ');
   }
 })();
