@@ -109,7 +109,7 @@ body {
   }
 
   .conferencia-table td:nth-child(1)::before {
-    content: "🎤 Conferencista: ";
+    content: "🎤 Orador: ";
     font-weight: 600;
   }
 
