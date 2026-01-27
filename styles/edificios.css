@@ -1,109 +1,162 @@
 .title {
-  text-align: center;
-  margin: 16px 0 20px;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #1f2a33;
+    text-align: center;
+    margin: 16px 0 20px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #1f2a33;
 }
 
 /* === TARJETA EDIFICIO === */
 .tarjeta-edificio {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 16px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-  margin-bottom: 22px;
+    background: linear-gradient(180deg, #ffffff, #f8f9fa);
+    border-radius: 20px;
+    padding: 18px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    margin-bottom: 26px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta-edificio:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
 }
 
 /* TÍTULO */
 .tarjeta-edificio h2 {
-  text-align: center;
-  font-size: 1.15rem;
-  margin-bottom: 6px;
-  font-weight: 600;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+    font-weight: 700;
+    color: #1c1f23;
 }
 
 /* DIRECCIÓN */
-.tarjeta-edificio > div {
-  text-align: center;
-  font-size: 0.95rem;
-  color: #555;
-  margin-bottom: 10px;
+.tarjeta-edificio>div {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 12px;
 }
 
 /* === TABLA === */
 .tabla-wrap {
-  overflow-x: auto;        /* clave mobile */
-  margin-top: 8px;
+    overflow-x: auto;
+    /* clave mobile */
+    margin-top: 8px;
 }
 
 .tabla-edificio {
-  width: 100%;
-  min-width: 420px;        /* fuerza scroll en mobile */
-  border-collapse: separate;
-  border-spacing: 0;
-  font-size: 0.9rem;
+    width: 100%;
+    min-width: 420px;
+    /* fuerza scroll en mobile */
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
 }
 
 .tabla-edificio th {
-  background: #f1f3f5;
-  font-weight: 600;
-  padding: 10px 6px;
-  border-bottom: 2px solid #dee2e6;
+    background: #f1f3f5;
+    font-weight: 600;
+    padding: 10px 6px;
+    border-bottom: 2px solid #dee2e6;
 }
 
 .tabla-edificio td {
-  padding: 8px 6px;
-  border-bottom: 1px solid #e9ecef;
+    padding: 10px 6px;
+    border-bottom: 1px solid #e9ecef;
+    text-align: center;
 }
 
 /* Primera columna (PISO) */
 .tabla-edificio td:first-child,
 .tabla-edificio th:first-child {
-  position: sticky;
-  left: 0;
-  background: #ffffff;
-  font-weight: 600;
+    position: sticky;
+    left: 0;
+    background: #ffffff;
+    font-weight: 600;
+}
+
+.tabla-edificio tr:last-child td {
+    border-bottom: none;
 }
 
 /* === OBSERVACIONES === */
 .obs {
-  margin-top: 12px;
-  padding-top: 8px;
-  border-top: 1px dashed #ccc;
-  font-size: 0.9rem;
-  color: #444;
+    margin-top: 16px;
+    padding-top: 10px;
+    border-top: 1px dashed #d0d0d0;
+    font-size: 0.9rem;
+    color: #444;
+    text-align: center;
 }
 
 /* === TERRITORIOS === */
 .territorios-grid {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 18px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 18px;
 }
 
 .territorio-card {
-  background: #f1f3f5;
-  padding: 10px 18px;
-  border-radius: 999px;
   cursor: pointer;
-  font-weight: 600;
-  transition: 0.2s;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #f1f1f1;
+  transition: all 0.2s ease;
 }
 
 .territorio-card:hover {
-  background: #dbe4ff;
+  background: #e0e0e0;
+}
+
+.territorio-card.activo {
+  background: #2563eb;
+  color: white;
+  font-weight: 600;
+}
+
+/* === ESTADOS === */
+.estado {
+    font-weight: 600;
+    text-align: center;
+    border-radius: 8px;
+    padding: 6px 4px;
+    font-size: 0.85rem;
+}
+
+/* No está */
+.estado-no-está {
+    background: #f1f3f5;
+    color: #495057;
+}
+
+/* Visitar */
+.estado-visitar {
+    background: #e7f5ff;
+    color: #1864ab;
+}
+
+/* No visitar */
+.estado-no-visitar {
+    background: #fff5f5;
+    color: #c92a2a;
+}
+
+/* Atendió */
+.estado-atendió {
+    background: #ebfbee;
+    color: #2b8a3e;
 }
 
 /* === DESKTOP MEJORA === */
 @media (min-width: 768px) {
-  .tarjeta-edificio {
-    padding: 20px 24px;
-  }
+    .tarjeta-edificio {
+        padding: 20px 24px;
+    }
 
-  .tabla-edificio {
-    min-width: 100%;
-  }
+    .tabla-edificio {
+        min-width: 100%;
+    }
 }

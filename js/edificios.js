@@ -23,6 +23,7 @@
 
   let tarjetas = [];
   let deptos = [];
+  let territorioActivo = null;
 
   Promise.all([
     fetch(URL_TARJETAS).then(r => r.json()),
@@ -36,17 +37,27 @@
 
   // 🟦 Tarjetas de territorios
   function renderTerritorios() {
-    const territorios = [...new Set(tarjetas.map(t => t.territorio))].sort((a, b) => a - b);
+    const territorios = [...new Set(tarjetas.map(t => t.territorio))]
+      .sort((a, b) => a - b);
 
     territoriosContainer.innerHTML = '';
-    territorios.forEach(t => {
+
+    territorios.forEach((t, index) => {
       const card = document.createElement('div');
       card.className = 'territorio-card';
       card.textContent = `Territorio ${t}`;
-      card.onclick = () => renderTerritorio(t);
+
+      card.onclick = () => seleccionarTerritorio(t, card);
+
       territoriosContainer.appendChild(card);
+
+      // 🔹 Seleccionar el primero automáticamente
+      if (index === 0) {
+        seleccionarTerritorio(t, card);
+      }
     });
   }
+
 
   // 🟦 Render territorio
   function renderTerritorio(territorio) {
@@ -89,7 +100,9 @@
         Object.keys(porPiso).forEach(piso => {
           let row = `<tr><td>${piso}</td>`;
           letras.forEach(l => {
-            row += `<td>${porPiso[piso][l] || ''}</td>`;
+            const estado = porPiso[piso][l] || '';
+            const clase = estado ? `estado estado-${estado.toLowerCase().replace(/\s/g, '-')}` : '';
+            row += `<td class="${clase}">${estado}</td>`;
           });
           row += '</tr>';
           tabla.innerHTML += row;
@@ -99,7 +112,7 @@
         tableWrap.className = 'tabla-wrap';
         tableWrap.appendChild(tabla);
         card.appendChild(tableWrap);
-        
+
         container.appendChild(card);
 
         if (tarjeta.observaciones && tarjeta.observaciones !== '—') {
@@ -110,4 +123,18 @@
         }
       });
   }
+  function seleccionarTerritorio(territorio, cardSeleccionada) {
+    territorioActivo = territorio;
+
+    // 🔹 Quitar activo a todos
+    document.querySelectorAll('.territorio-card')
+      .forEach(c => c.classList.remove('activo'));
+
+    // 🔹 Marcar el actual
+    cardSeleccionada.classList.add('activo');
+
+    // 🔹 Renderizar edificios
+    renderTerritorio(territorio);
+  }
 })();
+
