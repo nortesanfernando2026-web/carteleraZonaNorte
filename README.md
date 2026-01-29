@@ -1,2 +1,2 @@
 # carteleraZonaNorte
-Sitio informativo para grupo religioso
+Sitio informativo
